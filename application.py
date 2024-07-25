@@ -1,6 +1,7 @@
 import streamlit as st
 from src.pipeline.prediction_pipeline import Features, Prediction
 
+st.header("income price prediction")
 gender_list = ['Male', 'Female']
 education_list = ['Bachelors', 'college', 'Masters', 'school', 'Associate',
                   'Doctorate', 'bootcamp', 'Preschool']
