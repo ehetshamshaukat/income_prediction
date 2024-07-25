@@ -24,8 +24,8 @@ class DataIngestion:
             train_dataset,test_dataset=train_test_split(df,test_size=0.33,random_state=69)
 
             # saving train n test dataset into directory
-            train_dataset.to_csv(self.dataset_path.train_dataset_path)
-            test_dataset.to_csv(self.dataset_path.test_dataset_path)
+            train_dataset.to_csv(self.dataset_path.train_dataset_path,header=True,index=False)
+            test_dataset.to_csv(self.dataset_path.test_dataset_path,header=True,index=False)
 
             # returning train n test path for further use
             return self.dataset_path.train_dataset_path,self.dataset_path.test_dataset_path

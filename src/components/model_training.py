@@ -33,7 +33,7 @@ class ModelTraining:
                 "Randomforest": RandomForestClassifier(),
                 "Adaboost": AdaBoostClassifier(),
                 "Gradientboost": GradientBoostingClassifier(),
-                "balanceRFC": BalancedRandomForestClassifier()
+                "bRFC":BalancedRandomForestClassifier()
             }
 
             model_report = {}
@@ -47,7 +47,8 @@ class ModelTraining:
                 model_report[model_name] = recall * 100
 
             best_model_name = max(model_report, key=model_report.get)
-            save_file_as_pickle(self.model_config.model_pickl_path, best_model_name)
+            best_model=models[best_model_name]
+            save_file_as_pickle(self.model_config.model_pickl_path, best_model)
 
         except Exception as e:
             raise e

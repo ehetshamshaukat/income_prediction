@@ -38,7 +38,7 @@ class DataTransformation:
 
             preprocessing = ColumnTransformer([
                 ("numerical_column_pipeline", numerical_column_pipeline, numerical_columns),
-                ("categorical_columns", categorical_column_pipeline, categorical_columns)
+                ("categorical_columns_pipeline", categorical_column_pipeline, categorical_columns)
             ], remainder="passthrough")
 
             return preprocessing
@@ -51,9 +51,6 @@ class DataTransformation:
             test_dataset = pd.read_csv(test_dataset_path)
 
             transform = self.data_transformation()
-
-            # saving transformation config as pickle
-            save_file_as_pickle(self.data_transformation_config.data_transformation_pickle_path, transform)
 
             columns_to_drop = "income"
             target_feature = "income"
@@ -71,6 +68,9 @@ class DataTransformation:
             # concatenating depended feature with independed feature
             transform_train = np.c_[transform_xtrain, np.array(ytrain)]
             transform_test = np.c_[transform_xtest, np.array(ytest)]
+
+            # saving transformation config as pickle
+            save_file_as_pickle(self.data_transformation_config.data_transformation_pickle_path, transform)
 
             # returning transform dataset for model training
             return transform_train, transform_test
